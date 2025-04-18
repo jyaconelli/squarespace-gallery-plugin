@@ -1,6 +1,13 @@
 const apiUrl = "https://sheetdb.io/api/v1/j52gedzeoeycb";
 const base = "https://www.sherrysuisman.com";
 
+
+function transformDriveUrl(url) {
+  const match = url.match(/[-\w]{25,}/);
+  return match ? `https://drive.google.com/thumbnail?sz=w640&id=${match[0]}` : url;
+}
+
+
 const slug = new URLSearchParams(window.location.search).get("slug");
 
 if (!slug) {
@@ -27,7 +34,7 @@ fetch(`${apiUrl}/search?slug=${slug}`)
     images.forEach(url => {
       const slide = document.createElement("div");
       slide.className = "swiper-slide";
-      slide.innerHTML = `<img src="${url}" alt="Artwork image" />`;
+      slide.innerHTML = `<img src="${transformDriveUrl(url)}" alt="Artwork image" />`;
       carousel.appendChild(slide);
     });
 
@@ -52,7 +59,7 @@ fetch(`${apiUrl}/search?slug=${slug}`)
     const btsImages = (item.behindSceneImages || "").split(",").map(s => s.trim());
     btsImages.forEach(url => {
       const img = document.createElement("img");
-      img.src = url;
+      img.src = transformDriveUrl(url);
       bts.appendChild(img);
     });
 
