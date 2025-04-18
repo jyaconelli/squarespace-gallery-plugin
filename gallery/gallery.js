@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = "https://sheetdb.io/api/v1/YOUR_API_ID";
+  const apiUrl = "https://sheetdb.io/api/v1/j52gedzeoeycb";
 
   fetch(apiUrl)
     .then(res => res.json())
