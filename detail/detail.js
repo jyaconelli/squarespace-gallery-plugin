@@ -23,7 +23,7 @@ fetch(`${apiUrl}/search?slug=${slug}`)
     }
 
     document.getElementById("title").textContent = item.title || "";
-    document.title = `${item.title} –– Sherry Suisman Gallery`;
+    document.title = `${item.title} — Sherry Suisman Gallery`;
     window.parent.postMessage({ type: "update-title", title: document.title }, "*");
     document.getElementById("subtitle").textContent = item.subtitle || "";
     document.getElementById("aboutDescription").textContent = item.aboutDescription || "";
