@@ -1,4 +1,5 @@
 const apiUrl = "https://sheetdb.io/api/v1/j52gedzeoeycb";
+const parentBase = "https://your-squarespace-site.com";
 
 document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
@@ -53,8 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
           img.alt = item.title;
 
           img.addEventListener("click", () => {
-            const parentOrigin = window.parent.location.origin;
-            const detailUrl = `${parentOrigin}/portfolio/details?slug=${item.slug}`;
+            const detailUrl = `${parentBase}/portfolio/details?slug=${item.slug}`;
             window.parent.location.href = detailUrl;
           });
 
