@@ -1,67 +1,35 @@
 const apiUrl = "https://sheetdb.io/api/v1/j52gedzeoeycb";
-const parentBase = "https://www.sherrysuisman.com";
+const base = "https://www.sherrysuisman.com";
 
 document.addEventListener("DOMContentLoaded", function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  const slug = urlParams.get("slug");
+  fetch(apiUrl)
+    .then((res) => res.json())
+    .then((data) => {
+      const container = document.getElementById("masonry-gallery");
 
-  if (slug) {
-    // Detail View
-    fetch(`${apiUrl}/search?slug=${slug}`)
-      .then((res) => res.json())
-      .then((results) => {
-        const item = results[0];
-        if (!item) {
-          document.body.innerHTML = "<p>Item not found.</p>";
-          return;
-        }
+      data.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "gallery-item";
 
-        document.getElementById("masonry-gallery").style.display = "none";
-        document.getElementById("detail-view").style.display = "block";
+        const img = document.createElement("img");
+        img.src = item.coverImage;
+        img.alt = item.title || "Artwork";
 
-        document.getElementById("detail-title").textContent = item.title;
-        document.getElementById("detail-description").textContent =
-          item.description;
+        const meta = document.createElement("div");
+        meta.className = "gallery-meta";
+        meta.innerHTML = `
+          <div class="title">${item.title || ""}</div>
+          <div class="subtitle">${item.subtitle || ""}</div>
+        `;
 
-        const carousel = document.getElementById("detail-carousel");
-        const galleryImages = item.galleryImages
-          .split(",")
-          .map((url) => url.trim());
-
-        galleryImages.forEach((url) => {
-          const img = document.createElement("img");
-          img.src = url;
-          carousel.appendChild(img);
+        img.addEventListener("click", () => {
+          window.parent.location.href = `${base}/portfolio/details?slug=${item.slug}`;
         });
 
-        document.getElementById("back-button").addEventListener("click", () => {
-          window.parent.history.back(); // back in parent context
-        });
-      })
-      .catch((err) => console.error("Failed to load detail view", err));
-  } else {
-    // Gallery View
-    fetch(apiUrl)
-      .then((res) => res.json())
-      .then((data) => {
-        const container = document.getElementById("masonry-gallery");
-
-        data.forEach((item) => {
-          const div = document.createElement("div");
-          div.className = "gallery-item";
-          const img = document.createElement("img");
-          img.src = item.thumbnail;
-          img.alt = item.title;
-
-          img.addEventListener("click", () => {
-            const detailUrl = `${parentBase}/portfolio/details?slug=${item.slug}`;
-            window.parent.location.href = detailUrl;
-          });
-
-          div.appendChild(img);
-          container.appendChild(div);
-        });
-      })
-      .catch((err) => console.error("Failed to load gallery", err));
-  }
+        div.appendChild(img);
+        div.appendChild(meta);
+        container.appendChild(div);
+      });
+    })
+    .catch((err) => console.error("Error loading gallery:", err));
 });

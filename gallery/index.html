@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gallery</title>
+<body>
+  <div id="masonry-gallery"></div>
+
   <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-    }
     #masonry-gallery {
       column-count: 3;
       column-gap: 1em;
@@ -19,32 +12,26 @@
       width: 100%;
       margin-bottom: 1em;
       break-inside: avoid;
+      text-align: left;
+      cursor: pointer;
     }
     .gallery-item img {
       width: 100%;
       border-radius: 6px;
-      cursor: pointer;
     }
-    #detail-view {
-      display: none;
-      padding: 2em;
+    .gallery-meta {
+      font-size: 0.9em;
+      margin-top: 0.3em;
+      color: #333;
     }
-    #detail-carousel img {
-      width: 30%;
-      border-radius: 6px;
+    .gallery-meta .title {
+      font-weight: bold;
+    }
+    .gallery-meta .subtitle {
+      color: #777;
+      font-style: italic;
     }
   </style>
-</head>
-<body>
-  <div id="masonry-gallery"></div>
-
-  <div id="detail-view">
-    <button id="back-button">← Back</button>
-    <h2 id="detail-title"></h2>
-    <p id="detail-description"></p>
-    <div id="detail-carousel" style="display: flex; flex-wrap: wrap; gap: 1em; margin-top: 1em;"></div>
-  </div>
 
   <script src="gallery.js"></script>
 </body>
-</html>
