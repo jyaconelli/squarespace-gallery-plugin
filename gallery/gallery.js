@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const slug = urlParams.get("slug");
 
   if (slug) {
-    // Load detail view
+    // Detail View
     fetch(`${apiUrl}/search?slug=${slug}`)
       .then((res) => res.json())
       .then((results) => {
@@ -33,14 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
           carousel.appendChild(img);
         });
 
-        // Back button logic
         document.getElementById("back-button").addEventListener("click", () => {
-          window.parent.history.back(); // Navigate parent window back
+          window.parent.history.back(); // back in parent context
         });
       })
       .catch((err) => console.error("Failed to load detail view", err));
   } else {
-    // Load gallery view
+    // Gallery View
     fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => {
@@ -54,8 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
           img.alt = item.title;
 
           img.addEventListener("click", () => {
-            // Redirect parent window to the detail page
-            window.parent.location.href = `/portfolio/details?slug=${item.slug}`;
+            const parentOrigin = window.parent.location.origin;
+            const detailUrl = `${parentOrigin}/portfolio/details?slug=${item.slug}`;
+            window.parent.location.href = detailUrl;
           });
 
           div.appendChild(img);
