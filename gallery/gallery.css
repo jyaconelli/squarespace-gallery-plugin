@@ -1,0 +1,29 @@
+#masonry-gallery {
+  column-count: 3;
+  column-gap: 1em;
+  padding: 1em;
+}
+.gallery-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1em;
+  break-inside: avoid;
+  text-align: left;
+  cursor: pointer;
+}
+.gallery-item img {
+  width: 100%;
+  border-radius: 6px;
+}
+.gallery-meta {
+  font-size: 0.9em;
+  margin-top: 0.3em;
+  color: #333;
+}
+.gallery-meta .title {
+  font-weight: bold;
+}
+.gallery-meta .subtitle {
+  color: #777;
+  font-style: italic;
+}

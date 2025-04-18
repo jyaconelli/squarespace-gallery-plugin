@@ -1,0 +1,70 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+#detail-view {
+  padding: 2em;
+}
+.title-section {
+  text-align: center;
+}
+.swiper-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 2em auto;
+}
+.swiper-wrapper img {
+  width: 100%;
+  border-radius: 4px;
+}
+.description {
+  max-width: 800px;
+  margin: 2em auto;
+}
+.sale-section {
+  background: linear-gradient(to right, #2c8e44, #9cd950);
+  color: white;
+  padding: 2em;
+  text-align: center;
+  margin: 3em 0;
+}
+.sale-banner {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.sale-price {
+  font-size: 2em;
+  margin: 1em 0;
+}
+.contact-button {
+  background: white;
+  color: #2c8e44;
+  padding: 0.75em 1.5em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.bts-section {
+  max-width: 800px;
+  margin: 2em auto;
+}
+.bts-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.bts-images img {
+  width: 30%;
+  border-radius: 4px;
+}
+#back-button {
+  display: block;
+  margin: 3em auto;
+  padding: 0.5em 1em;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
