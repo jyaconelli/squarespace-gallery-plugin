@@ -1,5 +1,5 @@
 const apiUrl = "https://sheetdb.io/api/v1/j52gedzeoeycb";
-const parentBase = "https://your-squarespace-site.com";
+const parentBase = "https://www.sherrysuisman.com";
 
 document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
