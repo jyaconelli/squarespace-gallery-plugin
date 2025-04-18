@@ -23,14 +23,23 @@
     .gallery-item img {
       width: 100%;
       border-radius: 6px;
+      cursor: pointer;
+    }
+    #detail-view {
+      display: none;
+      padding: 2em;
+    }
+    #detail-carousel img {
+      width: 30%;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
   <div id="masonry-gallery"></div>
 
-  <div id="detail-view" style="display: none; padding: 2em;">
-    <a href="index.html">← Back to gallery</a>
+  <div id="detail-view">
+    <button id="back-button">← Back</button>
     <h2 id="detail-title"></h2>
     <p id="detail-description"></p>
     <div id="detail-carousel" style="display: flex; flex-wrap: wrap; gap: 1em; margin-top: 1em;"></div>
