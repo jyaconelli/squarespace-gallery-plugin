@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Francois+One&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
 #masonry-gallery {
   column-count: 3;
   column-gap: 1em;
@@ -10,20 +12,62 @@
   break-inside: avoid;
   text-align: left;
   cursor: pointer;
+  background-color: #000;
 }
 .gallery-item img {
   width: 100%;
-  border-radius: 6px;
 }
 .gallery-meta {
   font-size: 0.9em;
-  margin-top: 0.3em;
-  color: #333;
+  margin: 1em;
+  color: #fff;
+  display: flex;
+  gap: 0.5em;
+  flex-direction: column;
+}
+.title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 .gallery-meta .title {
-  font-weight: bold;
+  font-family: Raleway;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 32px;
+  letter-spacing: 0em;
+  text-transform: none;
+  line-height: 1.2em;
 }
 .gallery-meta .subtitle {
-  color: #777;
-  font-style: italic;
+  font-family: Raleway;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 24;
+  letter-spacing: 0em;
+  text-transform: none;
+  line-height: 1.2em;
+}
+
+.gallery-item:hover .cta {
+  color: #d4554eaa;
+  border-bottom-color: rgba(212, 85, 78, 0.15);
+  transition: border-color 0.15s ease-out, color 0.15s ease-out;
+}
+
+.gallery-item .cta {
+  color: #d4554e;
+  font-family: Roboto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  line-height: 1.8em;
+  text-transform: none;
+  padding-bottom: 0.05em;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(212, 85, 78, 0.3);
+  transition: border-color 0.15s ease-out, color 0.15s ease-out;
+  display: inline;
 }

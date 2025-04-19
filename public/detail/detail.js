@@ -106,6 +106,10 @@ fetch(`${apiBase}/${slug}`)
       .map((s) => s.trim())
       .filter(Boolean);
 
+    if (btsImages.length < 1) {
+      document.querySelector(".bts-section").style.display = "none";
+    }
+
     btsImages.forEach((url) => {
       const slide = document.createElement("div");
       slide.className = "swiper-slide";

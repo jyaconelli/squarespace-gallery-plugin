@@ -1,4 +1,5 @@
-const apiUrl = "https://firestore.googleapis.com/v1/projects/sherry-suisman-site/databases/(default)/documents/galleryItems";
+const apiUrl =
+  "https://firestore.googleapis.com/v1/projects/sherry-suisman-site/databases/(default)/documents/galleryItems";
 const isLocalHost = window.location.host.includes("localhost");
 const base = isLocalHost
   ? "http://localhost:" + window.location.port
@@ -34,9 +35,13 @@ fetch(apiUrl)
 
       const meta = document.createElement("div");
       meta.className = "gallery-meta";
+      // <div class="subtitle">${item.subtitle}</div>
       meta.innerHTML = `
-        <div class="title">${item.title}</div>
-        <div class="subtitle">${item.subtitle}</div>
+        <div class="title-container">
+          <div class="title">${item.title}</div>
+          
+        </div>
+        <div class="cta">View Piece</div>
       `;
 
       img.addEventListener("click", () => {

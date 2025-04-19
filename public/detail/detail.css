@@ -141,7 +141,7 @@ hr {
   display: flex;
   flex-direction: row;
   background: linear-gradient(to right, #2c8e44, #9cd950);
-  background-image: url('https://images.squarespace-cdn.com/content/v1/5dacdde830eb5203e26b312a/1571640249055-0KPRECZU2AEZVC0QIZNI/Background_GreenGradient_2.jpg?format=2500w');
+  background-image: url("https://images.squarespace-cdn.com/content/v1/5dacdde830eb5203e26b312a/1571640249055-0KPRECZU2AEZVC0QIZNI/Background_GreenGradient_2.jpg?format=2500w");
   color: white;
   padding: 120px 80px;
   text-align: center;
@@ -217,7 +217,9 @@ hr {
 }
 
 .bts-next,
-.bts-prev {
+.bts-prev,
+.swiper-button-next,
+.swiper-button-prev {
   background-color: #0000006c;
   padding: 6px;
 }
