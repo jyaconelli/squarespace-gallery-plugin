@@ -1,4 +1,4 @@
-const apiUrl = "https://sheetdb.io/api/v1/j52gedzeoeycb";
+const apiUrl = "https://firestore.googleapis.com/v1/projects/sherry-suisman-site/databases/(default)/documents/galleryItems";
 const isLocalHost = window.location.host.includes("localhost");
 const base = isLocalHost
   ? "http://localhost:" + window.location.port
@@ -10,10 +10,21 @@ const detailsPageUrl = isLocalHost
 
 fetch(apiUrl)
   .then((res) => res.json())
-  .then((data) => {
+  .then((json) => {
     const container = document.getElementById("masonry-gallery");
+    const docs = json.documents || [];
 
-    data.forEach((item) => {
+    docs.forEach((doc) => {
+      const f = doc.fields || {};
+      const item = {
+        slug: f.slug?.stringValue || "",
+        title: f.title?.stringValue || "",
+        subtitle: f.subtitle?.stringValue || "",
+        coverImage: f.coverImage?.stringValue || "",
+      };
+
+      if (!item.slug || !item.coverImage) return;
+
       const div = document.createElement("div");
       div.className = "gallery-item";
 
@@ -24,8 +35,8 @@ fetch(apiUrl)
       const meta = document.createElement("div");
       meta.className = "gallery-meta";
       meta.innerHTML = `
-        <div class="title">${item.title || ""}</div>
-        <div class="subtitle">${item.subtitle || ""}</div>
+        <div class="title">${item.title}</div>
+        <div class="subtitle">${item.subtitle}</div>
       `;
 
       img.addEventListener("click", () => {

@@ -1,4 +1,5 @@
-const apiUrl = "https://sheetdb.io/api/v1/j52gedzeoeycb";
+const apiBase =
+  "https://firestore.googleapis.com/v1/projects/sherry-suisman-site/databases/(default)/documents/galleryItems";
 const base = window.location.host.includes("localhost")
   ? "http://localhost:" + window.location.port
   : "https://www.sherrysuisman.com";
@@ -9,25 +10,29 @@ if (!slug) {
   document.body.innerHTML = "<p>No artwork specified.</p>";
 }
 
+// Resize post
 function postHeight() {
   const height = document.body.scrollHeight;
   window.parent.postMessage({ type: "resize-iframe", height }, "*");
 }
 
-// Recalculate on load and resize
 window.addEventListener("load", postHeight);
 window.addEventListener("resize", postHeight);
 
-// Optional: recalc after images load
 const observer = new MutationObserver(() => postHeight());
 observer.observe(document.body, { childList: true, subtree: true });
 
-fetch(`${apiUrl}/search?slug=${slug}`)
-  .then((res) => res.json())
-  .then(([item]) => {
-    if (!item) {
-      document.body.innerHTML = "<p>Artwork not found.</p>";
-      return;
+// Fetch and transform Firestore document
+fetch(`${apiBase}/${slug}`)
+  .then((res) => {
+    if (!res.ok) throw new Error("Not found");
+    return res.json();
+  })
+  .then((doc) => {
+    const f = doc.fields || {};
+    const item = {};
+    for (const key in f) {
+      item[key] = Object.values(f[key])[0];
     }
 
     document.getElementById("title").textContent = item.title || "";
@@ -45,7 +50,10 @@ fetch(`${apiUrl}/search?slug=${slug}`)
       item.sizeDescription || "";
 
     // Carousel
-    const images = (item.carouselImages || "").split(",").map((s) => s.trim());
+    const images = (item.carouselImages || "")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
 
     const mainWrapper = document.getElementById("carousel");
     const thumbWrapper = document.getElementById("carousel-thumbs");
@@ -53,9 +61,7 @@ fetch(`${apiUrl}/search?slug=${slug}`)
     images.forEach((url) => {
       const slide = document.createElement("div");
       slide.className = "swiper-slide";
-      slide.innerHTML = `<a href="${url}" class="glightbox" data-gallery="carousel">
-      <img src="${url}" alt="Artwork image" />
-    </a>`;
+      slide.innerHTML = `<img src="${url}" alt="Artwork image" />`;
       mainWrapper.appendChild(slide);
 
       const thumb = document.createElement("div");
@@ -64,7 +70,6 @@ fetch(`${apiUrl}/search?slug=${slug}`)
       thumbWrapper.appendChild(thumb);
     });
 
-    // Initialize Swipers
     const thumbsSwiper = new Swiper(".swiper-thumbs", {
       spaceBetween: 10,
       slidesPerView: 3,
@@ -87,7 +92,7 @@ fetch(`${apiUrl}/search?slug=${slug}`)
     });
 
     // Sale info
-    if (item.isForSale?.toLowerCase() === "yes") {
+    if ((item.isForSale || "").toLowerCase() === "yes") {
       document.getElementById("priceDescription").textContent =
         item.priceDescription || "";
     } else {
@@ -98,28 +103,20 @@ fetch(`${apiUrl}/search?slug=${slug}`)
     const btsWrapper = document.getElementById("behind-the-scenes");
     const btsImages = (item.behindSceneImages || "")
       .split(",")
-      .map((s) => s.trim());
+      .map((s) => s.trim())
+      .filter(Boolean);
+
     btsImages.forEach((url) => {
       const slide = document.createElement("div");
       slide.className = "swiper-slide";
-
-      slide.innerHTML = `<a href="${url}" class="glightbox-bts" data-gallery="carousel">
-      <img src="${url}" alt="Behind the scenes image" />
-    </a>`;
+      slide.innerHTML = `<img src="${url}" alt="Behind the scenes image" />`;
       btsWrapper.appendChild(slide);
-    });
-
-    const btsLightbox = GLightbox({
-      selector: ".glightbox-bts",
-    });
-    const lightbox = GLightbox({
-      selector: ".glightbox",
     });
 
     new Swiper(".bts-swiper", {
       loop: true,
       spaceBetween: 10,
-      slidesPerView: Math.min(5, btsImages.length),
+      slidesPerView: Math.min(btsImages.length, 3),
       pagination: {
         el: ".bts-pagination",
         clickable: true,
@@ -128,10 +125,6 @@ fetch(`${apiUrl}/search?slug=${slug}`)
         nextEl: ".bts-next",
         prevEl: ".bts-prev",
       },
-    });
-
-    document.getElementById("back-button").addEventListener("click", () => {
-      window.parent.history.back();
     });
   })
   .catch((err) => {

@@ -14,8 +14,7 @@ body {
 }
 
 .content-section {
-  padding-top: 48px;
-  padding-bottom: 48px;
+  padding: 48px 80px;
   flex: auto;
   display: flex;
   flex-direction: row;
@@ -79,6 +78,7 @@ h4 {
   padding-left: 48px;
   padding-right: 48px;
   background-color: #000;
+  background-image: url("https://images.squarespace-cdn.com/content/v1/5dacdde830eb5203e26b312a/1571772710093-3OLKI4YBMJ4S1W92FTL9/Background_BlackPrint.jpg?format=2500w");
   color: #fff;
 }
 .swiper-container {
@@ -98,6 +98,7 @@ h4 {
 .main-swiper .swiper-slide {
   height: 100% !important;
   align-self: center;
+  object-fit: contain;
 }
 
 .swiper-thumbs .swiper-slide {
@@ -140,8 +141,9 @@ hr {
   display: flex;
   flex-direction: row;
   background: linear-gradient(to right, #2c8e44, #9cd950);
+  background-image: url('https://images.squarespace-cdn.com/content/v1/5dacdde830eb5203e26b312a/1571640249055-0KPRECZU2AEZVC0QIZNI/Background_GreenGradient_2.jpg?format=2500w');
   color: white;
-  padding: 120px 50px;
+  padding: 120px 80px;
   text-align: center;
   gap: 2em;
   align-items: center;
@@ -177,7 +179,11 @@ hr {
 
 .bts-section {
   /* max-width: 800px; */
-  margin: 2em auto;
+  margin: 6em 80px;
+}
+
+.bts-header {
+  text-align: center;
 }
 
 #back-button {
@@ -194,9 +200,10 @@ hr {
 .bts-swiper {
   margin-top: 1em;
   width: 100%;
-  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  --swiper-navigation-color: #fff;
+  --swiper-pagination-color: #9cd950;
 }
 
 .bts-swiper .swiper-slide {
@@ -205,11 +212,17 @@ hr {
 
 .bts-swiper img {
   width: 100%;
-  /* max-height: 400px; */
-  object-fit: cover;
+  max-height: 70vh !important;
+  object-fit: contain;
+}
+
+.bts-next,
+.bts-prev {
+  background-color: #0000006c;
+  padding: 6px;
 }
 
 .bts-swiper .swiper-slide {
   height: 100% !important;
-  align-self: center;
+  /* max-height: 70vh !important; */
 }
