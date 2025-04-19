@@ -9,6 +9,19 @@ if (!slug) {
   document.body.innerHTML = "<p>No artwork specified.</p>";
 }
 
+function postHeight() {
+  const height = document.body.scrollHeight;
+  window.parent.postMessage({ type: "resize-iframe", height }, "*");
+}
+
+// Recalculate on load and resize
+window.addEventListener("load", postHeight);
+window.addEventListener("resize", postHeight);
+
+// Optional: recalc after images load
+const observer = new MutationObserver(() => postHeight());
+observer.observe(document.body, { childList: true, subtree: true });
+
 fetch(`${apiUrl}/search?slug=${slug}`)
   .then((res) => res.json())
   .then(([item]) => {
