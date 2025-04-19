@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artwork Detail</title>
+  <link rel="stylesheet" href="detail.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+</head>
+
+<body>
+  <div id="detail-view">
+    <div class="title-section">
+      <h1 id="title"></h1>
+      <h3 id="subtitle"></h3>
+    </div>
+
+    <div class="content-section">
+      <div class="carousel-container">
+        <div class="swiper swiper-container main-swiper">
+          <div class="swiper-wrapper" id="carousel">
+            <!-- Main slides injected by JS -->
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="swiper swiper-thumbs">
+          <div class="swiper-wrapper" id="carousel-thumbs">
+            <!-- Thumbs injected by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="description">
+        <div class="description-section">
+          <h4>About the Piece</h4>
+          <p id="aboutDescription"></p>
+        </div>
+        <hr />
+        <div class="description-section">
+          <strong>Technique / Materials</strong>
+          <span id="techniquesDescription"></span>
+        </div>
+
+        <hr />
+        <div class="description-section">
+          <strong>Size</strong>
+          <span id="sizeDescription"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sale-section" id="sale-info">
+      <div class="for-sale-callout-container">
+        <div class="sale-banner">
+          <h1>This piece is for sale!</h1>
+        </div>
+        <button class="contact-button" onclick="window.parent.location.href='mailto:sherrysuisman@gmail.com'">Contact
+          Sherry</button>
+      </div>
+      <div class="sale-info-container">
+        <h2 class="sale-price" id="priceDescription"></h2>
+        <p>
+          (Shipping not included. Please note: Because of the nature of printmaking there may be slight variations in
+          color, placement, etc. from piece to piece. Each print is made by hand and is thus unique.)
+        </p>
+      </div>
+    </div>
+
+    <div class="bts-section">
+      <h4>Behind the Scenes</h4>
+      <div class="swiper bts-swiper">
+        <div class="swiper-wrapper" id="behind-the-scenes">
+          <!-- Slides will be injected here -->
+        </div>
+        <div class="swiper-pagination bts-pagination"></div>
+        <div class="swiper-button-prev bts-prev"></div>
+        <div class="swiper-button-next bts-next"></div>
+      </div>
+    </div>
+
+    <button id="back-button">← Back</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="detail.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "sherry-gallery",
+  "version": "1.0.0",
+  "description": "Local dev server for Sherry Suisman gallery and detail pages",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
