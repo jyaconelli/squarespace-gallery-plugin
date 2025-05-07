@@ -5,6 +5,19 @@
   column-gap: 1em;
   padding: 1em;
 }
+
+@media (max-width: 900px) {
+  #masonry-gallery {
+    column-count: 2 !important;
+  }
+}
+
+@media (max-width: 780px) {
+  #masonry-gallery {
+    column-count: 1 !important;
+  }
+}
+
 .gallery-item {
   display: inline-block;
   width: 100%;
