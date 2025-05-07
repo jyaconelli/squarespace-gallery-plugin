@@ -9,6 +9,18 @@ const detailsPageUrl = isLocalHost
   ? `${base}/detail/?slug=`
   : `${base}/portfolio/details?slug=`;
 
+// Resize post
+function postHeight() {
+  const height = document.body.scrollHeight;
+  window.parent.postMessage({ type: "resize-iframe", height }, "*");
+}
+
+window.addEventListener("load", postHeight);
+window.addEventListener("resize", postHeight);
+
+const observer = new MutationObserver(() => postHeight());
+observer.observe(document.body, { childList: true, subtree: true });
+
 fetch(apiUrl)
   .then((res) => res.json())
   .then((json) => {
