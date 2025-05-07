@@ -23,6 +23,13 @@ window.addEventListener("DOMNodeRemoved", postHeight);
 const observer = new MutationObserver(() => postHeight());
 observer.observe(document.body, { childList: true, subtree: true });
 
+const images = document.querySelectorAll("img");
+
+const onReady = () => {
+  postHeight();
+};
+images.forEach((img) => {});
+
 fetch(apiUrl)
   .then((res) => res.json())
   .then((json) => {
@@ -47,6 +54,16 @@ fetch(apiUrl)
       img.src = item.coverImage;
       img.alt = item.title || "Artwork";
 
+      if ("decode" in img) {
+        img.decode().then(onReady).catch(onReady);
+      } else if (img.complete) {
+        // Already loaded (cached)
+        onReady();
+      } else {
+        img.addEventListener("load", onReady);
+        img.addEventListener("error", onReady);
+      }
+
       const meta = document.createElement("div");
       meta.className = "gallery-meta";
       // <div class="subtitle">${item.subtitle}</div>
@@ -65,7 +82,6 @@ fetch(apiUrl)
       div.appendChild(img);
       div.appendChild(meta);
       container.appendChild(div);
-      postHeight()
     });
   })
   .catch((err) => console.error("Error loading gallery:", err));
