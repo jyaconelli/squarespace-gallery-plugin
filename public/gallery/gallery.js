@@ -17,6 +17,8 @@ function postHeight() {
 
 window.addEventListener("load", postHeight);
 window.addEventListener("resize", postHeight);
+window.addEventListener("DOMNodeInserted", postHeight);
+window.addEventListener("DOMNodeRemoved", postHeight);
 
 const observer = new MutationObserver(() => postHeight());
 observer.observe(document.body, { childList: true, subtree: true });
@@ -63,6 +65,7 @@ fetch(apiUrl)
       div.appendChild(img);
       div.appendChild(meta);
       container.appendChild(div);
+      postHeight()
     });
   })
   .catch((err) => console.error("Error loading gallery:", err));
