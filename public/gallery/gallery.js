@@ -85,3 +85,5 @@ fetch(apiUrl)
     });
   })
   .catch((err) => console.error("Error loading gallery:", err));
+
+setInterval(postHeight, 1000);
