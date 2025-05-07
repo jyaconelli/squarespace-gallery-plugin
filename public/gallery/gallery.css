@@ -1,20 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Francois+One&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-#masonry-gallery {
-  column-count: 3;
+.masonry-gallery {
   column-gap: 1em;
-  padding: 1em;
 }
 
-@media (max-width: 900px) {
-  #masonry-gallery {
-    column-count: 2 !important;
+@media (max-width: 1024px) {
+  .masonry-gallery {
+    column-count: 2;
   }
 }
-
-@media (max-width: 780px) {
-  #masonry-gallery {
-    column-count: 1 !important;
+@media (min-width: 1024px) {
+  .masonry-gallery {
+    column-count: 3;
   }
 }
 
@@ -56,7 +53,7 @@
   font-family: Raleway;
   font-weight: 300;
   font-style: normal;
-  font-size: 24;
+  font-size: 24px;
   letter-spacing: 0em;
   text-transform: none;
   line-height: 1.2em;
