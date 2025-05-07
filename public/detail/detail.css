@@ -28,9 +28,13 @@ body {
 @media (max-width: 600px) {
   .content-section {
     flex-direction: column;
+    padding: 12px 12px;
   }
   .carousel-container {
     width: 100%;
+  }
+  .sale-section {
+    flex-direction: column !important;
   }
 }
 
