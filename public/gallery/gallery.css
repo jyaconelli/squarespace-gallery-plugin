@@ -1,32 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Francois+One&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-.masonry-gallery {
-  column-gap: 1em;
+@media (max-width: 900px) {
+  .grid-sizer,
+  .gallery-item {
+    width: 50% !important;
+  }
 }
 
-@media (max-width: 1024px) {
-  .masonry-gallery {
-    column-count: 2;
-  }
+.grid {
+  position: relative;
 }
-@media (min-width: 1024px) {
-  .masonry-gallery {
-    column-count: 3;
-  }
+
+.grid-sizer {
+    width: 33.333%;
+ /* Adjust to 50% or 100% for smaller screens with media queries */
 }
 
 .gallery-item {
-  display: inline-block;
-  width: 100%;
+  width: calc(33.333% - 1em);
+  margin-bottom: 16px;
+  box-sizing: border-box;
   margin-bottom: 1em;
   break-inside: avoid;
   text-align: left;
   cursor: pointer;
   background-color: #000;
 }
+
 .gallery-item img {
   width: 100%;
 }
+
 .gallery-meta {
   font-size: 0.9em;
   margin: 1em;

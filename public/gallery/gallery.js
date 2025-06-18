@@ -15,6 +15,13 @@ function postHeight() {
   window.parent.postMessage({ type: "resize-iframe", height }, "*");
 }
 
+// sort posts by publish date
+function sortByDate(items) {
+  console.log("sortbydate: ", items);
+  return items
+    .slice()
+    .sort((a, b) => new Date(b.createTime) - new Date(a.createTime));
+}
 window.addEventListener("load", postHeight);
 window.addEventListener("resize", postHeight);
 window.addEventListener("DOMNodeInserted", postHeight);
@@ -32,9 +39,10 @@ images.forEach((img) => {});
 
 fetch(apiUrl)
   .then((res) => res.json())
+  .then((res) => sortByDate(res.documents ?? []))
   .then((json) => {
     const container = document.getElementById("masonry-gallery");
-    const docs = json.documents || [];
+    const docs = json || [];
 
     docs.forEach((doc) => {
       const f = doc.fields || {};
@@ -82,6 +90,14 @@ fetch(apiUrl)
       div.appendChild(img);
       div.appendChild(meta);
       container.appendChild(div);
+    });
+    imagesLoaded(container, () => {
+      new Masonry(container, {
+        itemSelector: ".gallery-item",
+        columnWidth: ".grid-sizer",
+        percentPosition: true,
+      });
+      postHeight();
     });
   })
   .catch((err) => console.error("Error loading gallery:", err));

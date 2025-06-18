@@ -4,11 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <title>Gallery</title>
+  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+  <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
   <link rel="stylesheet" href="gallery.css" />
 </head>
 
 <body>
-  <div id="masonry-gallery" class="masonry-gallery"></div>
+  <!-- <div id="masonry-gallery" class="masonry-gallery" ></div> -->
+  <div class="grid" id="masonry-gallery">
+    <div class="grid-sizer"></div>
+    <!-- Items will be injected here -->
+  </div>
   <script src="gallery.js"></script>
 </body>
 
