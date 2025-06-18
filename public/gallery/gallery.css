@@ -3,7 +3,7 @@
 @media (max-width: 900px) {
   .grid-sizer,
   .gallery-item {
-    width: 50% !important;
+    width: calc(50% - 1em) !important;
   }
 }
 
@@ -12,8 +12,8 @@
 }
 
 .grid-sizer {
-    width: 33.333%;
- /* Adjust to 50% or 100% for smaller screens with media queries */
+  width: 33.333%;
+  /* Adjust to 50% or 100% for smaller screens with media queries */
 }
 
 .gallery-item {
