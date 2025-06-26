@@ -83,7 +83,7 @@ fetch(apiUrl)
         <div class="cta">View Piece</div>
       `;
 
-      img.addEventListener("click", () => {
+      div.addEventListener("click", () => {
         window.parent.location.href = `${detailsPageUrl}${item.slug}`;
       });
 
